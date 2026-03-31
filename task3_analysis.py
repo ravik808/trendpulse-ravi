@@ -40,3 +40,12 @@ print(f"Score: {top_post['score']}")
 
 print("\n💬 Average Comments per Subreddit:")
 print(avg_comments)
+
+df["engagement"] = df["num_comments"] / (df["score"] + 1)
+
+df["is_popular"] = df["score"] > df["score"].mean()
+
+output_file = "data/trends_analysed.csv"
+df.to_csv(output_file, index=False)
+
+print(f"\nSaved to {output_file}")
